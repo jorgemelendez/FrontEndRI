@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -7,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultsComponent implements OnInit {
 
+  query: string;
 
+  constructor(private route: ActivatedRoute) { }
 
-  constructor() { }
 
   ngOnInit() {
+    console.log('En nuevo componente', this.route.snapshot.paramMap.get('query'));
+    this.query = this.route.snapshot.paramMap.get('query');
   }
 
 }

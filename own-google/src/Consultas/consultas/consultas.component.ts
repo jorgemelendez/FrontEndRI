@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {ConsultaService} from '../service/consulta.service';
+import { ConsultaService } from '../service/consulta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-consultas',
@@ -13,15 +14,17 @@ export class ConsultasComponent implements OnInit {
     query: new FormControl(''),
   });
 
-  constructor(private queryService: ConsultaService) { }
+  constructor(private queryService: ConsultaService,
+              private routeService: Router) { }
 
   ngOnInit() {
 
   }
 
-  buscarTerminos(): void {
+  sendQuery(): void {
     const query = this.queryForm.value.query;
-    this.queryService.getQuery(query);
+    console.log(query);
+    this.routeService.navigate(['resultado', query]);
   }
 
 

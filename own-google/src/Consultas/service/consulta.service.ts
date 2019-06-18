@@ -10,7 +10,8 @@ export class ConsultaService {
 
 
   getQuery(query: string): Observable<any> {
-    const url = 'http://127.0.0.1:5000' + query;
+    console.log(query);
+    const url = 'http://127.0.0.1:5000/' + query;
     return this.http.get<any>(url)
       .pipe(map(result => { console.log(result); }));
   }

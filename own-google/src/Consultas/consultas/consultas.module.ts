@@ -19,4 +19,5 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   providers: [ConsultaService],
   bootstrap: [ConsultasComponent]
 })
+
 export class ConsultasModule { }

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ResultsComponent} from './results.component';
 
 const routes: Routes = [
-  {path: 'resultado', component: ResultsComponent}
+  {path: 'resultado/:query', component: ResultsComponent}
 ];
 
 
