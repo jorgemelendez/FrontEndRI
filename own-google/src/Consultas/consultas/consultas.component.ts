@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import {ConsultaService} from '../service/consulta.service';
 
 @Component({
   selector: 'app-consultas',
@@ -7,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultasComponent implements OnInit {
 
-  constructor() { }
+  queryForm = new FormGroup({
+    query: new FormControl(''),
+  });
+
+  constructor(private queryService: ConsultaService) { }
 
   ngOnInit() {
 
   }
 
   buscarTerminos(): void {
-    console.log('Buscar terminos');
+    const query = this.queryForm.value.query;
+    this.queryService.getQuery(query);
   }
 
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ConsultasComponent } from './consultas.component';
 import { ConsultasRoutingModule } from './consultas-routing.module';
 import { ConsultaService } from '../service/consulta.service';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     ConsultasRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [ConsultasComponent],
   providers: [ConsultaService],
