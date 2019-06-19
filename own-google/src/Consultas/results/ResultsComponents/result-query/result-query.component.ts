@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ConsultaService } from '../../../service/consulta.service';
+import { Doc } from './Doc';
 
 @Component({
   selector: 'app-result-query',
@@ -10,6 +11,11 @@ export class ResultQueryComponent implements OnInit {
 
   @Input()
   query: string;
+
+  numberDocs: number;
+  time: string;
+
+  docs: Array<Doc>;
 
   constructor(private consultaService: ConsultaService) { }
 
