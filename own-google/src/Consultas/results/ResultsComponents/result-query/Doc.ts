@@ -1,5 +1,5 @@
 export interface Doc {
+  nombre: string;
   link: string;
-  name: string;
-  summary: string;
+  resumen: string;
 }

@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultQueryComponent } from './result-query.component';
+import { MatTableModule, MatPaginatorModule, MatPaginatorIntl } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorInicializador } from './MatPaginatorInicializador';
 
 
 @NgModule({
@@ -11,10 +14,13 @@ import { ResultQueryComponent } from './result-query.component';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
   ],
   exports: [ResultQueryComponent],
-  providers: [],
+  providers: [{ provide: MatPaginatorIntl, useClass: MatPaginatorInicializador}],
   bootstrap: [ResultQueryComponent]
 })
 export class ResultQueryModule { }

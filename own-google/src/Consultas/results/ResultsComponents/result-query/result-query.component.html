@@ -1,4 +1,31 @@
 
 <div class="container">
-  hola
+  <div>
+    <table mat-table class="table table-sm" [dataSource]="dataSource">
+      <!--Documento-->
+      <ng-container matColumnDef="documento">
+        <th class="d-flex justify-content-center align-items-center" mat-header-cell *matHeaderCellDef></th>
+        <td class="d-flex flex-column" mat-cell *matCellDef="let doc">
+          <div>
+            <a href="{{doc.link}}">
+              <h3>{{doc.nombre}}</h3>
+              <div>
+                <cite>{{doc.link}}</cite>
+              </div>
+            </a>
+          </div>
+          <div>
+            <span>
+              {{doc.resumen}}
+            </span>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <!--Paginador-->
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[4, 6, 8, 10]" style="border-top: 1px gray solid">
+    </mat-paginator>
+  </div>
 </div>
