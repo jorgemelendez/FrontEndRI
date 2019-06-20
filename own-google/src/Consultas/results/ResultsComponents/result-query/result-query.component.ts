@@ -21,7 +21,13 @@ export class ResultQueryComponent implements OnInit {
 
   ngOnInit() {
     this.consultaService.getQuery(this.query).subscribe( resultado => {
-      console.log(resultado);
+      this.numberDocs = resultado.cantidadDocumentos;
+      this.time = resultado.tiempo;
+      this.docs = resultado.listaDocumentos;
+      // TODO: Eliminar estos console
+      console.log(this.numberDocs);
+      console.log(this.time);
+      console.log(this.docs);
     });
   }
 
