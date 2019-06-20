@@ -1,4 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ConsultaService } from '../../../service/consulta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-query',
@@ -7,12 +10,25 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  queryForm: FormGroup;
+
+  constructor(private queryService: ConsultaService,
+              private routeService: Router,
+              private fb: FormBuilder) { }
 
   @Input()
   query: string;
 
   ngOnInit() {
+    this.queryForm = this.fb.group({
+      query: ['', []]
+    });
+  }
+
+  sendQuery(): void {
+    const query = this.queryForm.value.query;
+    console.log(query);
+    this.routeService.navigate(['resultado', query]);
   }
 
 }

@@ -10,11 +10,12 @@
     <ul class="navbar-nav">
       <img src="../../../../assets/Logo-01.png" routerLink="/" style="cursor: pointer"/>
     </ul>
-    <input class="rounded-button w3-input colorBackground positionAndSize" type="text" placeholder="  Ingrese su consulta...">
-        <button class="btn buttonClass">
-          Buscar
-        </button>
-
+    <form ngForm [formGroup]="queryForm" class="w-100">
+      <div class="d-flex flex-row SizeInpuAndButton">
+        <input class="rounded-button w3-input colorBackground positionAndSizeInput" type="text" formControlName="query" [ngModel]="query" placeholder="Ingrese su consulta...">
+        <button class="btn buttonClass positionAndSizeButton" (click)="sendQuery()">Buscar</button>
+      </div>
+    </form>
   </div>
 
 </nav>
