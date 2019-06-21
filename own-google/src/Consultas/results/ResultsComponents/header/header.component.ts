@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ConsultaService } from '../../../service/consulta.service';
 import { Router } from '@angular/router';
 
@@ -28,7 +28,8 @@ export class HeaderComponent implements OnInit {
   sendQuery(): void {
     const query = this.queryForm.value.query;
     console.log(query);
-    this.routeService.navigate(['resultado', query]);
+    this.routeService.navigateByUrl('', {skipLocationChange: true}).then(() =>
+      this.routeService.navigate(['resultado', query]));
   }
 
 }

@@ -35,18 +35,10 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
       this.numberDocs = resultado.cantidadDocumentos;
       this.time = resultado.tiempo;
       this.docs = resultado.listaDocumentos as Doc[];
-      // TODO: Eliminar estos console
-      console.log(this.numberDocs);
-      console.log(this.time);
-      console.log(this.docs);
       this.dataSource.data = resultado.listaDocumentos as Doc[];
     });
-    // this.dataSource.data = [{link: 'link1', name: 'doc1', summary: 'resumen1'},
-    // {link: 'link2', name: 'doc2', summary: 'resumen2'},
-    // {link: 'link3', name: 'doc3', summary: 'resumen3'}] as Doc[];
   }
 
-  // Metodo que se ejecuta para la vista. Pagina y Ordena.
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
