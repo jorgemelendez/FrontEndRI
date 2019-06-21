@@ -4,7 +4,9 @@
     <table mat-table class="table table-sm" [dataSource]="dataSource">
       <!--Documento-->
       <ng-container matColumnDef="documento">
-        <th class="d-flex justify-content-center align-items-center" disabled="true" mat-header-cell *matHeaderCellDef></th>
+        <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef>
+          Cerca de {{numberDocs}} resultados ({{time}} segundos)
+        </th>
         <td class="d-flex flex-column" mat-cell *matCellDef="let doc">
           <div>
             <a href="{{doc.link}}">
