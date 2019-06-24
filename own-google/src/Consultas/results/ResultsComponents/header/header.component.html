@@ -7,8 +7,11 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav">
-      <img src="../../../../assets/Logo-01.png" routerLink="/" style="cursor: pointer"/>
+      <button style="background: transparent; border: transparent" (click)="sendToHome()">
+          <img src="../../../../assets/Logo-01.png" routerLink="/" style="cursor: pointer"/>
+      </button>
     </ul>
     <form ngForm [formGroup]="queryForm" class="w-100">
       <div class="d-flex flex-row SizeInpuAndButton">

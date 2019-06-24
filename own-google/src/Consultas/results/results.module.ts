@@ -6,6 +6,7 @@ import {ResultsRoutingModule} from './results-routing.module';
 import { HeaderComponent } from './ResultsComponents/header/header.component';
 import { ResultQueryModule } from './ResultsComponents/result-query/result-query.module';
 import {HeaderModule} from './ResultsComponents/header/header.module';
+import {MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {HeaderModule} from './ResultsComponents/header/header.module';
     FormsModule,
     ReactiveFormsModule,
     ResultQueryModule,
-    HeaderModule
+    HeaderModule,
+    MatProgressSpinnerModule
   ],
   exports: [ResultsComponent],
   providers: [],

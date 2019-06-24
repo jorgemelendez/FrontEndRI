@@ -1,13 +1,19 @@
 
 <div class="container">
+  <div class="spinner">
+    <mat-spinner style="color: #3679dc; margin-top: 20px" *ngIf="showSpinner" class="spinner"></mat-spinner>
+  </div>
   <div>
-    <table mat-table class="table table-sm" [dataSource]="dataSource">
+    <table mat-table class="table table-sm" [dataSource]="dataSource" *ngIf="!showSpinner" >
       <!--Documento-->
       <ng-container matColumnDef="documento">
-        <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef>
-          Cerca de {{numberDocs}} resultados ({{time}} segundos)
+        <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef >
+          <h6>Cerca de {{numberDocs}} resultados ({{time}} segundos)</h6>
+          <hr>
         </th>
+
         <td class="d-flex flex-column" mat-cell *matCellDef="let doc">
+
           <div>
             <a href="{{doc.link}}">
               <h3>{{doc.nombre}}</h3>
@@ -25,6 +31,7 @@
                 En caché
               </a>
             </span>
+          <hr>
           </div>
           <div>
             <br>

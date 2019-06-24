@@ -23,8 +23,10 @@ export class ConsultasComponent implements OnInit {
 
   sendQuery(): void {
     const query = this.queryForm.value.query;
-    console.log(query);
-    this.routeService.navigate(['resultado', query]);
+
+    if (query !== '') {
+      this.routeService.navigate(['resultado', query]);
+    }
   }
 
 

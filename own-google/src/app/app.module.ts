@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ConsultasModule } from '../Consultas/consultas/consultas.module';
 import { ResultsModule } from '../Consultas/results/results.module';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     ConsultasModule,
-    ResultsModule
+    ResultsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,11 +25,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  sendToHome(): void {
+    this.routeService.navigateByUrl('', {skipLocationChange: true});
+  }
+
   sendQuery(): void {
     const query = this.queryForm.value.query;
     console.log(query);
     this.routeService.navigateByUrl('', {skipLocationChange: true}).then(() =>
       this.routeService.navigate(['resultado', query]));
   }
-
 }
