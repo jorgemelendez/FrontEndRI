@@ -32,15 +32,24 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   }
 
   showSpinner: boolean;
+  noResults: boolean;
 
   ngOnInit() {
     this.showSpinner = true;
+    this.noResults = false;
     this.consultaService.getQuery(this.query).subscribe( resultado => {
-      this.showSpinner = false;
-      this.numberDocs = resultado.cantidadDocumentos;
-      this.time = resultado.tiempo;
-      this.docs = resultado.listaDocumentos as Doc[];
-      this.dataSource.data = resultado.listaDocumentos as Doc[];
+      console.log(resultado);
+      if (resultado.cantidadDocumentos !== 0) {
+        this.showSpinner = false;
+        this.numberDocs = resultado.cantidadDocumentos;
+        this.time = resultado.tiempo;
+        this.docs = resultado.listaDocumentos as Doc[];
+        this.dataSource.data = resultado.listaDocumentos as Doc[];
+      } else {
+        this.showSpinner = false;
+        this.noResults = true;
+      }
+
     });
   }
 

@@ -4,7 +4,10 @@
     <mat-spinner style="color: #3679dc; margin-top: 20px" *ngIf="showSpinner" class="spinner"></mat-spinner>
   </div>
   <div>
-    <table mat-table class="table table-sm" [dataSource]="dataSource" *ngIf="!showSpinner" >
+    <h4 *ngIf="noResults">
+      No se han encontrado ningún documento relacionado con la consulta ( <b>{{this.query}}</b> ).
+    </h4>
+    <table mat-table class="table table-sm" [dataSource]="dataSource" *ngIf="!showSpinner && !noResults" >
       <!--Documento-->
       <ng-container matColumnDef="documento">
         <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef >
@@ -13,7 +16,6 @@
         </th>
 
         <td class="d-flex flex-column" mat-cell *matCellDef="let doc">
-
           <div>
             <a href="{{doc.link}}">
               <h3>{{doc.nombre}}</h3>
@@ -42,7 +44,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     <!--Paginador-->
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[4, 6, 8, 10]" style="border-top: 1px gray solid">
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[4, 6, 8, 10]" style="border-top: 1px gray solid" *ngIf="!noResults">
     </mat-paginator>
   </div>
 </div>

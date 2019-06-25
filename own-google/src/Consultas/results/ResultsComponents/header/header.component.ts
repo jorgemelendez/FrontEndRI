@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
   }
 
   sendToHome(): void {
-    this.routeService.navigateByUrl('', {skipLocationChange: true});
+    this.routeService.navigateByUrl('');
   }
 
   sendQuery(): void {
