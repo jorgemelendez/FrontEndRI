@@ -4,6 +4,7 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { ConsultaService } from '../../../service/consulta.service';
 import { Doc } from './Doc';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {ResultsComponent} from '../../results.component';
 
 @Component({
   selector: 'app-result-query',
@@ -27,7 +28,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   // Paginador de la tabla
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
-  constructor(private consultaService: ConsultaService, private spinner: NgxSpinnerService) {
+  constructor(private consultaService: ConsultaService, private spinner: NgxSpinnerService, private resultsComponent: ResultsComponent) {
     this.displayedColumns = ['documento'];
   }
 

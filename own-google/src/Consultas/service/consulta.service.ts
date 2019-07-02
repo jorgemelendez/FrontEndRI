@@ -7,7 +7,7 @@ import { Result } from '../results/ResultsComponents/result-query/Result';
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaService {
-  consulta: any = { }
+  consulta: any = { };
   constructor(private http: HttpClient) { }
 
 
