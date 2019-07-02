@@ -42,27 +42,24 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
       this.showSpinner = true;
       this.noResults = false;
       this.consultaService.getConsultaQuery(this.query).subscribe(value => {
-      console.log('b');
-      console.log(value);
-      this.consultaResultado = value;
-      console.log(this.consultaResultado);
-      console.log('b');
-      if (this.consultaResultado.result) {
-        this.consultaService.getQuery(this.query).subscribe(resultado => {
-          this.numberDocs = resultado.cantidadDocumentos;
-          resultado.listaDocumentos.forEach(val => {
-            val.checked = false;
-          });
-          this.time = resultado.tiempo;
-          this.docs = resultado.listaDocumentos as Doc[];
-          this.dataSource.data = resultado.listaDocumentos as Doc[];
+        this.consultaResultado = value;
+        console.log(this.consultaResultado);
+        if (this.consultaResultado.result) {
+          this.consultaService.getQuery(this.query).subscribe(resultado => {
+            this.numberDocs = resultado.cantidadDocumentos;
+            resultado.listaDocumentos.forEach(val => {
+              val.checked = false;
+            });
+            this.time = resultado.tiempo;
+            this.docs = resultado.listaDocumentos as Doc[];
+            this.dataSource.data = resultado.listaDocumentos as Doc[];
 
-        });
-      } else {
-        this.showSpinner = false;
-        this.noResults = true;
-      }
-    });
+          });
+        } else {
+          this.showSpinner = false;
+          this.noResults = true;
+        }
+      });
 
   }
 
@@ -73,7 +70,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   }
 
 
-  sendFeedBackQuery(event: any) {
+  sendFeedBackQuery() {
     this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
     this.dataSource.data.forEach( value => {
       if (value.checked) {
