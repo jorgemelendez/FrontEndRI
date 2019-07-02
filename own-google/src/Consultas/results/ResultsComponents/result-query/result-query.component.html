@@ -10,6 +10,10 @@
     <table mat-table class="table table-sm" [dataSource]="dataSource" *ngIf="!showSpinner && !noResults" >
       <!--Documento-->
       <ng-container matColumnDef="documento">
+        <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef>
+          Cerca de {{numberDocs}} resultados ({{time}} segundos)
+          <button class="btn buttonClass positionAndSizeButton" style="position:fixed;width:200px;height:60px;bottom:500px;right:40px;background-color:#0C9;color:#FFF
+          ;text-align:center;box-shadow: 2px 2px 3px #999;" (click)="sendFeedBackQuery()">Retroalimentar Búsqueda</button>
         <th class="d-flex flex-column" disabled="true" mat-header-cell *matHeaderCellDef >
           <h6>Cerca de {{numberDocs}} resultados ({{time}} segundos)</h6>
           <hr>
@@ -40,12 +44,16 @@
             <span>
               {{doc.resumen}}
             </span>
-              <span>
-
+            <span>
+              <a href="http://127.0.0.1:5000/pagina/{{doc.nombre}}">
+                En caché
+              </a>
             </span>
-            </div>
+            <mat-checkbox value="{{doc.nombre}}" (click)="retroAlimentar(doc.nombre)" checked="">Seleccionar para retroalimentación</mat-checkbox>
           </div>
-
+          <div>
+            <br>
+          </div>
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
