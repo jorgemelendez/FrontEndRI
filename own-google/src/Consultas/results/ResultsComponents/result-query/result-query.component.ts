@@ -73,6 +73,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
       alert('Debe seleccionar documentos para realizar la retroalimentacion.');
       event.stopPropagation();
     } else {
+      this.showSpinner = true;
       this.dataSource = new MatTableDataSource<Doc>();
       this.dataSource.data.splice(0, this.dataSource.data.length);
       console.log(this.dataSource.data.length);
@@ -81,6 +82,8 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
         this.time = resultado.tiempo;
         this.docs = resultado.listaDocumentos as Doc[];
         this.dataSource.data = resultado.listaDocumentos as Doc[];
+        this.dataSource.paginator = this.paginator;
+        this.showSpinner = false;
       });
       this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
     }
