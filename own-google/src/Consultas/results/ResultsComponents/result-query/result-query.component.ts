@@ -91,6 +91,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
         this.docs = resultado.listaDocumentos as Doc[];
         this.dataSource.data = resultado.listaDocumentos as Doc[];
         this.showSpinner = false;
+        this.dataSource.paginator = this.paginator;
       });
       this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
     }
