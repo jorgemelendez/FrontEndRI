@@ -6,6 +6,7 @@ import { Doc } from './Doc';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {ResultsComponent} from '../../results.component';
 
+
 @Component({
   selector: 'app-result-query',
   templateUrl: './result-query.component.html',
@@ -18,7 +19,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   numberDocs: number;
   time: string;
   retroalimentacion: any = {docs: []};
-
+  consultaResultado: any = {};
   docs: Array<Doc>;
   kind: string;
   // Columnas que se van a mostrar.
@@ -35,40 +36,51 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   showSpinner: boolean;
   noResults: boolean;
 
+
+
   ngOnInit() {
-    this.showSpinner = true;
-    this.noResults = false;
-    this.consultaService.getQuery(this.query).subscribe( resultado => {
-      console.log(resultado);
-      if (resultado.cantidadDocumentos !== 0) {
-        this.showSpinner = false;
-        this.numberDocs = resultado.cantidadDocumentos;
-        this.time = resultado.tiempo;
-        this.docs = resultado.listaDocumentos as Doc[];
-        this.dataSource.data = resultado.listaDocumentos as Doc[];
+      this.showSpinner = true;
+      this.noResults = false;
+      this.consultaService.getConsultaQuery(this.query).subscribe(value => {
+      console.log('b');
+      console.log(value);
+      this.consultaResultado = value;
+      console.log(this.consultaResultado);
+      console.log('b');
+      if (this.consultaResultado.result) {
+        this.consultaService.getQuery(this.query).subscribe(resultado => {
+          this.numberDocs = resultado.cantidadDocumentos;
+          resultado.listaDocumentos.forEach(val => {
+            val.checked = false;
+          });
+          this.time = resultado.tiempo;
+          this.docs = resultado.listaDocumentos as Doc[];
+          this.dataSource.data = resultado.listaDocumentos as Doc[];
+
+        });
       } else {
         this.showSpinner = false;
         this.noResults = true;
       }
-
     });
 
   }
+
+
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
-  retroAlimentar(val: string) {
-    if (this.retroalimentacion.docs.indexOf(val) >= 0) {
-      this.retroalimentacion.docs.splice(this.retroalimentacion.docs.indexOf(val), 1);
-    } else {
-      this.retroalimentacion.docs.push(val);
-    }
-    console.log(this.retroalimentacion.docs);
-  }
 
   sendFeedBackQuery(event: any) {
+    this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
+    this.dataSource.data.forEach( value => {
+      if (value.checked) {
+        this.retroalimentacion.docs.push(value.nombre);
+      }
+    });
+
     if (this.retroalimentacion.docs.length === 0) {
       alert('Debe seleccionar documentos para realizar la retroalimentacion.');
       event.stopPropagation();

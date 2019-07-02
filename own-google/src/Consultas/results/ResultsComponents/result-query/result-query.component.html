@@ -4,6 +4,8 @@
     <mat-spinner style="color: #3679dc; margin-top: 20px" *ngIf="showSpinner" class="spinner"></mat-spinner>
   </div>
   <div>
+    <div [hidden]="consultaResultado.result" >0 Resultados para la busqueda, Quizo decir? <a href="/resultado/{{consultaResultado.consulta}}">{{consultaResultado.consulta}}</a></div>
+    <table mat-table class="table table-sm" [dataSource]="dataSource" [hidden]="!consultaResultado.result" >
     <h4 *ngIf="noResults">
       No se han encontrado ningún documento relacionado con la consulta ( <b>{{this.query}}</b> ).
     </h4>
@@ -56,7 +58,7 @@
           </div>
             <hr>
             <div class="paddings-left">
-              <mat-checkbox value="{{doc.nombre}}" (click)="retroAlimentar(doc.nombre)" checked="">Seleccionar para retroalimentación</mat-checkbox>
+              <mat-checkbox value="{{doc.nombre}}" checked="">Seleccionar para retroalimentación</mat-checkbox>
             </div>
           </div>
 
