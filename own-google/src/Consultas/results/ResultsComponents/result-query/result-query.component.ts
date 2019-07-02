@@ -53,14 +53,13 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
             this.time = resultado.tiempo;
             this.docs = resultado.listaDocumentos as Doc[];
             this.dataSource.data = resultado.listaDocumentos as Doc[];
-
+            this.showSpinner = false;
           });
         } else {
-          this.showSpinner = false;
           this.noResults = true;
+          this.showSpinner = false;
         }
       });
-
   }
 
 
@@ -70,7 +69,7 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
   }
 
 
-  sendFeedBackQuery() {
+  sendFeedBackQuery(event: any) {
     this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
     this.dataSource.data.forEach( value => {
       if (value.checked) {
@@ -78,20 +77,19 @@ export class ResultQueryComponent implements OnInit, AfterViewInit {
       }
     });
 
+    console.log(this.retroalimentacion.docs);
     if (this.retroalimentacion.docs.length === 0) {
       alert('Debe seleccionar documentos para realizar la retroalimentacion.');
       event.stopPropagation();
     } else {
-      this.showSpinner = true;
       this.dataSource = new MatTableDataSource<Doc>();
       this.dataSource.data.splice(0, this.dataSource.data.length);
-      console.log(this.dataSource.data.length);
+      this.showSpinner = true;
       this.consultaService.getLikeQuery(this.query, this.retroalimentacion.docs).subscribe(resultado => {
         this.numberDocs = resultado.cantidadDocumentos;
         this.time = resultado.tiempo;
         this.docs = resultado.listaDocumentos as Doc[];
         this.dataSource.data = resultado.listaDocumentos as Doc[];
-        this.dataSource.paginator = this.paginator;
         this.showSpinner = false;
       });
       this.retroalimentacion.docs.splice(0, this.retroalimentacion.docs.length);
