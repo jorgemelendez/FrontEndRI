@@ -22,4 +22,9 @@ export class ConsultaService {
     const url = 'http://127.0.0.1:5000/' + query;
     return this.http.get<Result>(url);
   }
+
+  getConsultaQuery(query: string): Observable<Result> {
+    const url = 'http://127.0.0.1:5000/querycheck/' + query;
+    return this.http.get<Result>(url);
+  }
 }
